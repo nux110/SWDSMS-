@@ -1,0 +1,52 @@
+* {margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+body {background:#f4f6f8; padding:20px;}
+
+/* APP LAYOUT */
+.app {display:flex; min-height:100vh; transition:all 0.3s ease;}
+
+/* SIDEBAR */
+.sidebar {width:220px; background:#2f855a; color:white; padding:25px; border-radius:20px 0 0 20px; transition:0.3s;}
+.sidebar h2{text-align:center;margin-bottom:30px;font-weight:700;}
+.sidebar a{display:flex; align-items:center; gap:8px; color:white; text-decoration:none; padding:12px; margin-bottom:10px; border-radius:12px; transition:0.2s;}
+.sidebar a.active, .sidebar a:hover{background: rgba(255,255,255,0.15); transform:scale(1.02);}
+.sidebar i{width:20px;}
+
+/* MAIN CONTENT */
+.content{flex:1;padding:30px;transition:0.3s;}
+section{display:none; opacity:0; transition:all 0.4s ease;}
+section.active{display:block; opacity:1;}
+
+/* DASHBOARD CARDS */
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px;margin-bottom:30px;}
+.stat{padding:25px; border-radius:18px; text-align:center; background:#fff; box-shadow:0 8px 20px rgba(0,0,0,0.05); transition:0.3s; position:relative; overflow:hidden;}
+.stat:hover{transform:translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.1);}
+.stat h1{font-size:2.4rem; margin-bottom:5px;}
+.stat span{font-size:14px; opacity:0.8;}
+.stat.total { background: linear-gradient(135deg,#e6fffa,#c6f7e2); color:#065f46;}
+.stat.resolved { background: linear-gradient(135deg,#edf7ed,#ccebd5); color:#2f855a;}
+.stat.pending { background: linear-gradient(135deg,#fff5f5,#ffd6d6); color:#9b2c2c;}
+.stat.today { background: linear-gradient(135deg,#ebf8ff,#bee3f8); color:#2b6cb0;}
+
+/* PROGRESS BAR */
+.progress-bar{height:5px; background:rgba(0,0,0,0.05); border-radius:5px; margin-top:10px; overflow:hidden;}
+.progress-bar div{height:100%; width:0; background:white; transition:width 1s ease;}
+
+/* RECENT TABLE */
+.recent{background:#fff; padding:20px; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.05);}
+.recent h3{margin-bottom:15px;}
+table{width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden;}
+th, td{padding:12px; text-align:left; transition: background 0.2s;}
+th{background:#edf2f7;}
+tr:hover{background:#f1f5f9; cursor:pointer;}
+button.solve-btn{padding:5px 12px;border:none;border-radius:8px;background:#2f855a;color:white;cursor:pointer;transition:0.2s;}
+button.solve-btn:hover{background:#065f46;}
+
+/* INCIDENT LIST */
+.table-section{background:#fff; padding:25px; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.05);}
+#searchInput{width:100%;padding:12px;margin-bottom:15px;border-radius:12px;border:1px solid #ddd;transition:0.2s;}
+#searchInput:focus{outline:none; border-color:#2f855a; box-shadow:0 0 5px rgba(47,133,90,0.3);}
+
+/* PROFILE */
+.profile-section{background:#fff;padding:25px;border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.05);}
+.profile-card{padding:20px;background:#f9fafb;border-radius:14px;box-shadow:0 4px 15px rgba(0,0,0,0.05);}
+.profile-card p{margin-bottom:12px;font-size:16px;}

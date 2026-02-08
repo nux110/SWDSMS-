@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard – Incident Reporting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>IncidentSys</h2>
+    <nav>
+      <a href="#dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="#list"><i class="fas fa-list"></i> Incident List</a>
+      <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="admin-dashboard active">
+      <h2>Admin Dashboard</h2>
+
+      <div class="stats">
+        <div class="stat total">
+          <h1 id="adminTotal">0</h1>
+          <span>Total Incidents</span>
+          <div class="progress-bar"><div id="totalBar"></div></div>
+        </div>
+        <div class="stat resolved">
+          <h1 id="resolvedCount">0</h1>
+          <span>Resolved</span>
+          <div class="progress-bar"><div id="resolvedBar"></div></div>
+        </div>
+        <div class="stat pending">
+          <h1 id="pendingCount">0</h1>
+          <span>Pending</span>
+          <div class="progress-bar"><div id="pendingBar"></div></div>
+        </div>
+        <div class="stat today">
+          <h1 id="todayCount">0</h1>
+          <span>Today</span>
+          <div class="progress-bar"><div id="todayBar"></div></div>
+        </div>
+      </div>
+
+      <div class="recent">
+        <h3>Recent Reports</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Student</th>
+              <th>Type</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="recentIncidents"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- INCIDENT LIST -->
+    <section id="list" class="table-section">
+      <h2>Incident Reports</h2>
+      <input type="text" id="searchInput" placeholder="Search by student name">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="incidentTable"></tbody>
+      </table>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile" class="profile-section">
+      <h2>Admin Profile</h2>
+      <div class="profile-card">
+        <p><strong>Name:</strong> Admin</p>
+        <p><strong>Email:</strong> admin@incident.com</p>
+        <p><strong>Total Solved:</strong> <span id="solvedCount">0</span></p>
+        <p><strong>Pending Issues:</strong> <span id="pendingProfileCount">0</span></p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
