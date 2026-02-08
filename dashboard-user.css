@@ -1,0 +1,72 @@
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Inter',sans-serif;}
+body {background:#f4f6f8; padding:20px;}
+
+/* APP LAYOUT */
+.app {display:flex; min-height:100vh; transition:all 0.3s ease;}
+
+/* SIDEBAR */
+.sidebar {width:220px; background:#2f855a; color:white; padding:25px; border-radius:20px 0 0 20px;}
+.sidebar h2{text-align:center;margin-bottom:30px;font-weight:700;}
+.sidebar a{display:block; color:white; text-decoration:none; padding:12px; margin-bottom:10px; border-radius:12px; transition:0.2s;}
+.sidebar a:hover, .sidebar a.active{background: rgba(255,255,255,0.15); transform:scale(1.02);}
+
+/* MAIN CONTENT */
+.content{flex:1;padding:30px; transition:0.3s;}
+section{display:none; opacity:0; transition:all 0.4s ease;}
+section.active{display:block; opacity:1;}
+
+/* MESSAGE SECTION */
+.message-section {margin-bottom:20px;}
+.message-card {background: linear-gradient(135deg,#fef3c7,#fde68a); padding:20px; border-radius:16px; box-shadow:0 8px 20px rgba(0,0,0,0.08); font-size:16px; color:#92400e; text-align:center; transition:all 0.3s ease;}
+.message-card:hover {transform: translateY(-3px); box-shadow:0 12px 25px rgba(0,0,0,0.12);}
+
+/* DASHBOARD CARDS */
+.stats-cards {display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:20px; margin-bottom:30px;}
+.card {padding:30px; border-radius:20px; text-align:center; box-shadow:0 12px 25px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; position: relative;}
+.card:hover{transform:translateY(-5px); box-shadow:0 16px 30px rgba(0,0,0,0.15);}
+.card h1{font-size:2.5rem; margin-bottom:5px; transition: all 0.5s ease;}
+.card p{font-size:14px; opacity:0.8;}
+.card.total {background: linear-gradient(135deg,#e6fffa,#c6f7e2); color:#065f46;}
+.card.bullying {background: linear-gradient(135deg,#fee2e2,#fecaca); color:#991b1b;}
+.card.language {background: linear-gradient(135deg,#fef3c7,#fde68a); color:#92400e;}
+.card.digital {background: linear-gradient(135deg,#ebf8ff,#bee3f8); color:#2b6cb0;}
+
+/* PROGRESS BARS */
+.progress-bars {margin-bottom:20px;}
+.progress {margin-bottom:10px;}
+.progress span {display:block; margin-bottom:5px;}
+.bar {background: rgba(0,0,0,0.05); height:8px; border-radius:5px; overflow:hidden;}
+.bar div {height:100%; width:0; background:#2f855a; transition: width 1s ease;}
+
+/* FORM SECTION */
+.form-section{background:#fff; padding:25px; border-radius:18px; box-shadow:0 12px 25px rgba(0,0,0,0.08); margin-bottom:20px;}
+.form-section h2{margin-bottom:20px;}
+.form-section input, .form-section select, .form-section textarea{width:100%; padding:12px; margin-bottom:15px; border-radius:12px; border:1px solid #ddd; transition:0.2s;}
+.form-section input:focus, .form-section select:focus, .form-section textarea:focus{outline:none; border-color:#2f855a; box-shadow:0 0 5px rgba(47,133,90,0.3);}
+.form-section button{background:#2f855a; color:white; padding:12px 20px; border:none; border-radius:12px; cursor:pointer; transition:0.3s;}
+.form-section button:hover{background:#065f46; transform:scale(1.02);}
+
+/* INCIDENT TABLE */
+.table-section{background:#fff; padding:25px; border-radius:18px; box-shadow:0 12px 25px rgba(0,0,0,0.08);}
+#searchInput{width:100%;padding:12px;margin-bottom:15px;border-radius:12px;border:1px solid #ddd; transition:0.2s;}
+#searchInput:focus{outline:none; border-color:#2f855a; box-shadow:0 0 5px rgba(47,133,90,0.3);}
+table{width:100%; border-collapse:collapse; border-radius:12px; overflow:hidden;}
+th, td{padding:12px; text-align:left; transition: background 0.2s;}
+th{background:#edf2f7;}
+tr:hover{background:#f1f5f9; cursor:pointer;}
+.teacher-messages {margin-top:20px;}
+.teacher-messages h3 {margin-bottom:10px; color:#065f46;}
+.teacher-messages ul {list-style:none;}
+.teacher-messages li {
+  background: #e6fffa;
+  color: #065f46;
+  padding:12px 15px;
+  border-radius:12px;
+  margin-bottom:10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.teacher-messages li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}

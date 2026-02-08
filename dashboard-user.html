@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incident Reporting System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="dashboard-user.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>IncidentSys</h2>
+    <nav>
+      <a href="#dashboard" class="active">Dashboard</a>
+      <a href="#message">Messages</a>
+      <a href="#report">Report Incident</a>
+      <a href="#list">Incident List</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+   <!-- MESSAGE SECTION -->
+<section id="message" class="message-section">
+  <div id="dynamicMessage" class="message-card">
+    Welcome! Stay alert and report incidents responsibly. ✨
+  </div>
+
+  <!-- TEACHER / GUIDANCE MESSAGES -->
+  <div class="teacher-messages">
+    <h3>Messages from Guidance</h3>
+    <ul id="teacherMessageList">
+      <!-- Messages will be dynamically inserted here -->
+    </ul>
+  </div>
+</section>
+
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="dashboard active">
+      <div class="stats-cards">
+        <div class="card total">
+          <h1 id="totalIncidents">0</h1>
+          <p>Total Incidents</p>
+        </div>
+        <div class="card bullying">
+          <h1 id="bullyingCount">0</h1>
+          <p>Bullying Cases</p>
+        </div>
+        <div class="card language">
+          <h1 id="languageCount">0</h1>
+          <p>Language Issues</p>
+        </div>
+        <div class="card digital">
+          <h1 id="digitalCount">0</h1>
+          <p>Digital Misuse</p>
+        </div>
+      </div>
+
+      <div class="progress-bars">
+        <h3>Incident Type Distribution</h3>
+        <div class="progress">
+          <span>Bullying</span>
+          <div class="bar"><div id="bullyingBar"></div></div>
+        </div>
+        <div class="progress">
+          <span>Language</span>
+          <div class="bar"><div id="languageBar"></div></div>
+        </div>
+        <div class="progress">
+          <span>Digital Misuse</span>
+          <div class="bar"><div id="digitalBar"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORT FORM -->
+    <section id="report" class="form-section">
+      <h2>Anonymous Incident Report</h2>
+      <form id="incidentForm">
+        <input type="text" id="studentName" placeholder="Student Name" required>
+        <input type="text" id="gradeSection" placeholder="Grade / Section" required>
+        <select id="incidentType" required>
+          <option value="">Incident Type</option>
+          <option>Bullying</option>
+          <option>Language</option>
+          <option>Digital Misuse</option>
+        </select>
+        <textarea id="description" placeholder="Describe the incident..." required></textarea>
+        <input type="date" id="incidentDate" required>
+        <button type="submit">Submit Report</button>
+      </form>
+    </section>
+
+    <!-- INCIDENT LIST -->
+    <section id="list" class="table-section">
+      <h2>Incident Reports</h2>
+      <input type="text" id="searchInput" placeholder="Search by student name">
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Grade</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody id="incidentTable"></tbody>
+      </table>
+    </section>
+
+  </main>
+</div>
+
+<script src="dashboard-user.js"></script>
+</body>
+</html>
