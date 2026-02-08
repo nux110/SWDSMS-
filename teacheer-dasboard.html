@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard – IncidentSys</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="teacher-dashboard.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2>Teacher</h2>
+    <nav>
+      <button data-target="dashboard" class="active">🏠 Dashboard</button>
+      <button data-target="incidents">📋 Incidents</button>
+      <button data-target="messages">💬 Messages</button>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="section active">
+      <h2>Overview</h2>
+      <div class="cards">
+        <div class="card glow">
+          <h1 id="total">0</h1>
+          <p>Total Incidents</p>
+        </div>
+        <div class="card warning">
+          <h1 id="pending">0</h1>
+          <p>Pending</p>
+        </div>
+        <div class="card success">
+          <h1 id="resolved">0</h1>
+          <p>Resolved</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCIDENTS -->
+    <section id="incidents" class="section">
+      <h2>Incident Reports</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Grade</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="incidentTable"></tbody>
+      </table>
+    </section>
+
+    <!-- MESSAGES -->
+    <section id="messages" class="section">
+      <h2>Send Message</h2>
+
+      <div class="message-box">
+        <select id="recipientType">
+          <option value="">Recipient</option>
+          <option>Student</option>
+          <option>Parent</option>
+        </select>
+
+        <input type="text" id="recipientName" placeholder="Student / Parent Name">
+        <textarea id="messageText" placeholder="Write a supportive message..."></textarea>
+        <button onclick="sendMessage()">Send</button>
+      </div>
+
+      <div class="sent">
+        <h3>Sent Messages</h3>
+        <ul id="sentList"></ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div id="toast"></div>
+
+<script src="teacher-dashboard.js"></script>
+</body>
+</html>
