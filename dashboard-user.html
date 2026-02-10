@@ -5,6 +5,7 @@
   <title>Incident Reporting System</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="dashboard-user.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -12,27 +13,63 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>IncidentSys</h2>
+    <div class="sidebar-header">
+      <h2><i class="fas fa-shield-alt"></i> IncidentSys</h2>
+    </div>
     <nav>
-      <a href="#dashboard" class="active">Dashboard</a>
-      <a href="#message">Messages</a>
-      <a href="#report">Report Incident</a>
-      <a href="#list">Incident List</a>
+      <a href="#dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
+      <a href="#message"><i class="fas fa-comments"></i> Messages</a>
+      <a href="#report"><i class="fas fa-exclamation-circle"></i> Report Incident</a>
+      <a href="#list"><i class="fas fa-list"></i> Incident List</a>
     </nav>
   </aside>
 
   <!-- MAIN CONTENT -->
   <main class="content">
+    <!-- TOP NAVBAR -->
+    <nav class="top-navbar">
+      <div class="navbar-left">
+        <h3>Incident Reporting System</h3>
+      </div>
+      <div class="navbar-right">
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+          <span id="userName">Student Name</span>
+        </div>
+        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </nav>
 
    <!-- MESSAGE SECTION -->
 <section id="message" class="message-section">
+  <div class="section-header">
+    <h2><i class="fas fa-comments"></i> Messages & Communication</h2>
+  </div>
+  
   <div id="dynamicMessage" class="message-card">
     Welcome! Stay alert and report incidents responsibly. ✨
   </div>
 
+  <!-- SEND MESSAGE FORM -->
+  <div class="send-message-box">
+    <h3>Send Message to Teacher</h3>
+    <form id="messageForm">
+      <input type="text" id="studentNameMsg" placeholder="Your Name" required>
+      <textarea id="messageText" placeholder="Write your message..." required></textarea>
+      <button type="submit">📤 Send Message</button>
+    </form>
+  </div>
+
+  <!-- USER MESSAGES DISPLAY -->
+  <div class="user-messages-display" id="userMessagesDisplay" style="display:none;">
+    <h3 style="margin-bottom:15px; color:#065f46;">Your Messages</h3>
+    <div id="userMessagesList"></div>
+  </div>
+
   <!-- TEACHER / GUIDANCE MESSAGES -->
   <div class="teacher-messages">
-    <h3>Messages from Guidance</h3>
+    <h3>💬 Messages from Guidance</h3>
     <ul id="teacherMessageList">
       <!-- Messages will be dynamically inserted here -->
     </ul>
@@ -42,27 +79,34 @@
 
     <!-- DASHBOARD -->
     <section id="dashboard" class="dashboard active">
+      <div class="section-header">
+        <h2>Dashboard Overview</h2>
+      </div>
       <div class="stats-cards">
         <div class="card total">
+          <i class="fas fa-file-alt"></i>
           <h1 id="totalIncidents">0</h1>
           <p>Total Incidents</p>
         </div>
         <div class="card bullying">
+          <i class="fas fa-fist-raised"></i>
           <h1 id="bullyingCount">0</h1>
           <p>Bullying Cases</p>
         </div>
         <div class="card language">
+          <i class="fas fa-comments"></i>
           <h1 id="languageCount">0</h1>
           <p>Language Issues</p>
         </div>
         <div class="card digital">
+          <i class="fas fa-laptop"></i>
           <h1 id="digitalCount">0</h1>
           <p>Digital Misuse</p>
         </div>
       </div>
 
       <div class="progress-bars">
-        <h3>Incident Type Distribution</h3>
+        <h3><i class="fas fa-chart-pie"></i> Incident Type Distribution</h3>
         <div class="progress">
           <span>Bullying</span>
           <div class="bar"><div id="bullyingBar"></div></div>
@@ -78,9 +122,64 @@
       </div>
     </section>
 
+    <!-- ANALYTICS -->
+    <section id="analytics" class="analytics-section">
+      <div class="section-header">
+        <h2>Analytics & Insights</h2>
+      </div>
+      
+      <div class="analytics-grid">
+        <div class="analytics-card pending-rate">
+          <div class="analytics-icon"><i class="fas fa-hourglass-half"></i></div>
+          <h3>Pending Rate</h3>
+          <p id="pendingRate">0%</p>
+          <span>Incidents awaiting response</span>
+        </div>
+        <div class="analytics-card resolution-rate">
+          <div class="analytics-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Resolution Rate</h3>
+          <p id="resolutionRate">0%</p>
+          <span>Successfully resolved incidents</span>
+        </div>
+        <div class="analytics-card avg-resolution">
+          <div class="analytics-icon"><i class="fas fa-clock"></i></div>
+          <h3>Reports This Month</h3>
+          <p id="monthlyReports">0</p>
+          <span>Incidents reported this month</span>
+        </div>
+        <div class="analytics-card status-overview">
+          <div class="analytics-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Safety Status</h3>
+          <p id="safetyStatus">Good</p>
+          <span>Overall incident trend</span>
+        </div>
+      </div>
+
+      <div class="analytics-details">
+        <div class="detail-card">
+          <h3><i class="fas fa-info-circle"></i> Key Insights</h3>
+          <ul id="insightsList">
+            <li>Track all your reported incidents here</li>
+            <li>Monitor resolution status in real-time</li>
+            <li>Get support from guidance counselors</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3><i class="fas fa-lightbulb"></i> Tips</h3>
+          <ul>
+            <li>Be detailed in your incident descriptions</li>
+            <li>Include dates and times for better investigation</li>
+            <li>Follow up messages will keep you updated</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- REPORT FORM -->
     <section id="report" class="form-section">
-      <h2>Anonymous Incident Report</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-exclamation-circle"></i> Anonymous Incident Report</h2>
+      </div>
       <form id="incidentForm">
         <input type="text" id="studentName" placeholder="Student Name" required>
         <input type="text" id="gradeSection" placeholder="Grade / Section" required>
@@ -92,13 +191,15 @@
         </select>
         <textarea id="description" placeholder="Describe the incident..." required></textarea>
         <input type="date" id="incidentDate" required>
-        <button type="submit">Submit Report</button>
+        <button type="submit"><i class="fas fa-paper-plane"></i> Submit Report</button>
       </form>
     </section>
 
     <!-- INCIDENT LIST -->
     <section id="list" class="table-section">
-      <h2>Incident Reports</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-list"></i> Your Incident Reports</h2>
+      </div>
       <input type="text" id="searchInput" placeholder="Search by student name">
       <table>
         <thead>
@@ -108,6 +209,7 @@
             <th>Type</th>
             <th>Date</th>
             <th>Description</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody id="incidentTable"></tbody>
