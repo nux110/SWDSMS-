@@ -1,5 +1,16 @@
-let incidents = JSON.parse(localStorage.getItem("userIncidents")) || [];
+let incidents = JSON.parse(localStorage.getItem("incidents")) || [];
 let messages = JSON.parse(localStorage.getItem("teacherMessages")) || [];
+
+// TEACHER DATA
+const currentTeacher = JSON.parse(localStorage.getItem("currentTeacher")) || { name: "Teacher Name" };
+document.getElementById("teacherName").textContent = currentTeacher.name;
+
+// LOGOUT FUNCTIONALITY
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("currentTeacher");
+  alert("You have been logged out successfully!");
+  window.location.href = "../sign in/login.html";
+});
 
 /* SIDEBAR NAV – FIXED */
 document.querySelectorAll(".sidebar button").forEach(btn=>{
@@ -45,8 +56,9 @@ function renderIncidents(){
 
 function resolve(i){
   incidents[i].status="Resolved";
-  localStorage.setItem("userIncidents",JSON.stringify(incidents));
+  localStorage.setItem("incidents",JSON.stringify(incidents));
   renderIncidents();
+  updateAnalytics();
   toast("Incident resolved ✅");
 }
 
@@ -58,6 +70,28 @@ function updateStats(){
 }
 
 /* MESSAGES */
+function handleSendMessage(event){
+  event.preventDefault();
+  const type=document.getElementById("recipientType").value;
+  const name=document.getElementById("recipientName").value;
+  const text=document.getElementById("messageText").value;
+  if(!type || !name || !text) return;
+
+  messages.push({
+    to:type,
+    name:name,
+    text:text,
+    date:new Date().toLocaleString()
+  });
+
+  localStorage.setItem("teacherMessages",JSON.stringify(messages));
+  document.getElementById("messageText").value="";
+  document.getElementById("recipientName").value="";
+  document.getElementById("recipientType").value="";
+  renderMessages();
+  toast("Message sent 📩");
+}
+
 function sendMessage(){
   const type=document.getElementById("recipientType").value;
   const name=document.getElementById("recipientName").value;
@@ -85,12 +119,44 @@ function renderMessages(){
   messages.forEach(m=>{
     list.innerHTML+=`
       <li>
-        <strong>${m.to}:</strong> ${m.name}<br>
-        ${m.text}<br>
-        <small>${m.date}</small>
+        <strong>📨 ${m.to}</strong>
+        <span class="recipient-info">To: ${m.name}</span>
+        <div class="message-text">${m.text}</div>
+        <span class="message-time">${m.date}</span>
       </li>`;
   });
 }
 
+/* ANALYTICS SECTION */
+function updateAnalytics() {
+  const total = incidents.length;
+  const resolved = incidents.filter(i => i.status === "Resolved").length;
+  const pending = incidents.filter(i => i.status === "Pending").length;
+  const resolutionRate = total > 0 ? Math.round((resolved / total) * 100) : 0;
+  const uniqueStudents = new Set(incidents.map(i => i.student)).size;
+  
+  // Update analytics cards
+  if (document.getElementById("totalIncidentsAnalytics")) {
+    document.getElementById("totalIncidentsAnalytics").textContent = total;
+    document.getElementById("resolutionRateAnalytics").textContent = resolutionRate + "%";
+    document.getElementById("pendingAnalytics").textContent = pending;
+    document.getElementById("studentReportsAnalytics").textContent = uniqueStudents;
+  }
+  
+  // Update insights
+  const insightsList = document.getElementById("teacherInsightsList");
+  if (insightsList) {
+    const insightItems = [
+      `Total Reports: ${total} incidents`,
+      `Resolution Rate: ${resolutionRate}%`,
+      `Pending Issues: ${pending}`,
+      `Students Reporting: ${uniqueStudents}`,
+      `Status: ${resolutionRate > 70 ? "Keep it up! 🌟" : resolutionRate > 40 ? "Good progress 👍" : "Needs attention ⚠️"}`
+    ];
+    insightsList.innerHTML = insightItems.map(item => `<li>${item}</li>`).join("");
+  }
+}
+
 renderIncidents();
 renderMessages();
+updateAnalytics();

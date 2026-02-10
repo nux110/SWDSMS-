@@ -5,6 +5,7 @@
   <title>Teacher Dashboard – IncidentSys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="teacher-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -12,20 +13,38 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>Teacher</h2>
+    <div class="sidebar-header">
+      <h2><i class="fas fa-chalkboard-user"></i> Teacher Panel</h2>
+    </div>
     <nav>
-      <button data-target="dashboard" class="active">🏠 Dashboard</button>
-      <button data-target="incidents">📋 Incidents</button>
-      <button data-target="messages">💬 Messages</button>
+      <button data-target="dashboard" class="active"><i class="fas fa-home"></i> Dashboard</button>
+      <button data-target="analytics"><i class="fas fa-chart-bar"></i> Analytics</button>
+      <button data-target="incidents"><i class="fas fa-list"></i> Incidents</button>
+      <button data-target="messages"><i class="fas fa-comments"></i> Messages</button>
     </nav>
   </aside>
 
   <!-- MAIN CONTENT -->
   <main class="content">
+    <!-- TOP NAVBAR -->
+    <nav class="top-navbar">
+      <div class="navbar-left">
+        <h3>Teacher Dashboard</h3>
+      </div>
+      <div class="navbar-right">
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/40" alt="Teacher" class="user-avatar">
+          <span id="teacherName">Teacher Name</span>
+        </div>
+        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </nav>
 
     <!-- DASHBOARD -->
     <section id="dashboard" class="section active">
-      <h2>Overview</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-chart-line"></i> Overview</h2>
+      </div>
       <div class="cards">
         <div class="card glow">
           <h1 id="total">0</h1>
@@ -42,9 +61,64 @@
       </div>
     </section>
 
+    <!-- ANALYTICS -->
+    <section id="analytics" class="analytics-section">
+      <div class="section-header">
+        <h2><i class="fas fa-chart-area"></i> Analytics & Statistics</h2>
+      </div>
+      
+      <div class="analytics-grid">
+        <div class="analytics-card total-rate">
+          <div class="analytics-icon"><i class="fas fa-file-alt"></i></div>
+          <h3>Total Incidents</h3>
+          <p id="totalIncidentsAnalytics">0</p>
+          <span>Reported incidents</span>
+        </div>
+        <div class="analytics-card resolution-rate">
+          <div class="analytics-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Resolution Rate</h3>
+          <p id="resolutionRateAnalytics">0%</p>
+          <span>Incidents resolved</span>
+        </div>
+        <div class="analytics-card pending-rate">
+          <div class="analytics-icon"><i class="fas fa-hourglass-half"></i></div>
+          <h3>Pending Issues</h3>
+          <p id="pendingAnalytics">0</p>
+          <span>Awaiting resolution</span>
+        </div>
+        <div class="analytics-card active-users">
+          <div class="analytics-icon"><i class="fas fa-users"></i></div>
+          <h3>Student Reports</h3>
+          <p id="studentReportsAnalytics">0</p>
+          <span>Students reporting</span>
+        </div>
+      </div>
+
+      <div class="analytics-details">
+        <div class="detail-card">
+          <h3><i class="fas fa-info-circle"></i> Class Insights</h3>
+          <ul id="teacherInsightsList">
+            <li>Track student-reported incidents</li>
+            <li>Monitor resolution progress</li>
+            <li>Identify recurring issues</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3><i class="fas fa-heart"></i> Support Tips</h3>
+          <ul>
+            <li>Respond promptly to student concerns</li>
+            <li>Provide constructive feedback</li>
+            <li>Escalate serious issues to admin</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- INCIDENTS -->
     <section id="incidents" class="section">
-      <h2>Incident Reports</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-list"></i> Incident Reports</h2>
+      </div>
       <table>
         <thead>
           <tr>
@@ -62,22 +136,27 @@
 
     <!-- MESSAGES -->
     <section id="messages" class="section">
-      <h2>Send Message</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-envelope"></i> Send Message</h2>
+      </div>
 
-      <div class="message-box">
-        <select id="recipientType">
-          <option value="">Recipient</option>
-          <option>Student</option>
-          <option>Parent</option>
-        </select>
+      <div class="send-message-box">
+        <h3>Send Message to Student or Parent</h3>
+        <form id="messageForm" onsubmit="handleSendMessage(event)">
+          <select id="recipientType" required>
+            <option value="">Select Recipient Type</option>
+            <option value="Student">Student</option>
+            <option value="Parent">Parent</option>
+          </select>
 
-        <input type="text" id="recipientName" placeholder="Student / Parent Name">
-        <textarea id="messageText" placeholder="Write a supportive message..."></textarea>
-        <button onclick="sendMessage()">Send</button>
+          <input type="text" id="recipientName" placeholder="Recipient Name" required>
+          <textarea id="messageText" placeholder="Write a supportive message..." required></textarea>
+          <button type="submit">📤 Send Message</button>
+        </form>
       </div>
 
       <div class="sent">
-        <h3>Sent Messages</h3>
+        <h3>💬 Sent Messages</h3>
         <ul id="sentList"></ul>
       </div>
     </section>
