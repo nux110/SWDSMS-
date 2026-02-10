@@ -13,20 +13,39 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2>IncidentSys</h2>
+    <div class="sidebar-header">
+      <h2><i class="fas fa-shield-alt"></i> IncidentSys</h2>
+    </div>
     <nav>
       <a href="#dashboard" class="active"><i class="fas fa-home"></i> Dashboard</a>
+      <a href="#analytics"><i class="fas fa-chart-bar"></i> Analytics</a>
       <a href="#list"><i class="fas fa-list"></i> Incident List</a>
+      <a href="#accounts"><i class="fas fa-users"></i> Monitor Accounts</a>
       <a href="#profile"><i class="fas fa-user"></i> Profile</a>
     </nav>
   </aside>
 
   <!-- MAIN CONTENT -->
   <main class="content">
+    <!-- TOP NAVBAR -->
+    <nav class="top-navbar">
+      <div class="navbar-left">
+        <h3>Admin Control Panel</h3>
+      </div>
+      <div class="navbar-right">
+        <div class="user-profile">
+          <img src="https://via.placeholder.com/40" alt="Admin" class="user-avatar">
+          <span id="adminName">Administrator</span>
+        </div>
+        <button id="logoutBtn" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </nav>
 
     <!-- DASHBOARD -->
     <section id="dashboard" class="admin-dashboard active">
-      <h2>Admin Dashboard</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-chart-line"></i> Dashboard Overview</h2>
+      </div>
 
       <div class="stats">
         <div class="stat total">
@@ -68,9 +87,64 @@
       </div>
     </section>
 
+    <!-- ANALYTICS -->
+    <section id="analytics" class="analytics-section">
+      <div class="section-header">
+        <h2><i class="fas fa-chart-area"></i> Analytics & Statistics</h2>
+      </div>
+      
+      <div class="analytics-grid">
+        <div class="analytics-card total-rate">
+          <div class="analytics-icon"><i class="fas fa-file-alt"></i></div>
+          <h3>Total Incidents</h3>
+          <p id="totalIncidentsAnalytics">0</p>
+          <span>All reported incidents</span>
+        </div>
+        <div class="analytics-card resolution-rate">
+          <div class="analytics-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Resolution Rate</h3>
+          <p id="resolutionRateAnalytics">0%</p>
+          <span>Successfully resolved</span>
+        </div>
+        <div class="analytics-card pending-rate">
+          <div class="analytics-icon"><i class="fas fa-hourglass-half"></i></div>
+          <h3>Pending Issues</h3>
+          <p id="pendingAnalytics">0</p>
+          <span>Awaiting resolution</span>
+        </div>
+        <div class="analytics-card active-users">
+          <div class="analytics-icon"><i class="fas fa-users"></i></div>
+          <h3>Active Users</h3>
+          <p id="activeUsersAnalytics">0</p>
+          <span>Total active accounts</span>
+        </div>
+      </div>
+
+      <div class="analytics-details">
+        <div class="detail-card">
+          <h3><i class="fas fa-info-circle"></i> Key Insights</h3>
+          <ul id="adminInsightsList">
+            <li>Monitor system-wide incident trends</li>
+            <li>Track user and teacher engagement</li>
+            <li>Manage account statuses in real-time</li>
+          </ul>
+        </div>
+        <div class="detail-card">
+          <h3><i class="fas fa-cog"></i> Admin Actions</h3>
+          <ul>
+            <li>Review all incident reports regularly</li>
+            <li>Monitor user account activities</li>
+            <li>Ensure proper incident resolution</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- INCIDENT LIST -->
     <section id="list" class="table-section">
-      <h2>Incident Reports</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-list"></i> Incident Reports</h2>
+      </div>
       <input type="text" id="searchInput" placeholder="Search by student name">
       <table>
         <thead>
@@ -86,9 +160,43 @@
       </table>
     </section>
 
+    <!-- MONITOR ACCOUNTS -->
+    <section id="accounts" class="accounts-section">
+      <div class="section-header">
+        <h2><i class="fas fa-users-cog"></i> Monitor User & Teacher Accounts</h2>
+      </div>
+      <div class="accounts-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="users">Users</button>
+        <button class="filter-btn" data-filter="teachers">Teachers</button>
+        <input type="text" id="accountSearchInput" placeholder="Search by name or email...">
+      </div>
+      <table class="accounts-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Join Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="accountsTableBody"></tbody>
+      </table>
+      <div id="accountStats" class="account-stats-summary">
+        <div class="stat-item"><strong>Total Users:</strong> <span id="totalUsers">0</span></div>
+        <div class="stat-item"><strong>Total Teachers:</strong> <span id="totalTeachers">0</span></div>
+        <div class="stat-item"><strong>Active:</strong> <span id="totalActive">0</span></div>
+        <div class="stat-item"><strong>Inactive:</strong> <span id="totalInactive">0</span></div>
+      </div>
+    </section>
+
     <!-- PROFILE -->
     <section id="profile" class="profile-section">
-      <h2>Admin Profile</h2>
+      <div class="section-header">
+        <h2><i class="fas fa-user-cog"></i> Admin Profile</h2>
+      </div>
       <div class="profile-card">
         <p><strong>Name:</strong> Admin</p>
         <p><strong>Email:</strong> admin@incident.com</p>
